@@ -1,3 +1,28 @@
 # Executive Summary
+In this assignment, we get comfortable with assigning column aliases, using WHERE clauses to filter, using the ORDER BY clause to sort, and using the JOIN clause to perform inner joins with other tables. Along they way, we use the BETWEEN keyword to specify range conditions, the CONCAT function to combine string values, the DATE_FORMAT function to reformat a date value, we use the ROUND function to round a number to a certain number of decimal places, we use arithmetic operators to compute total prices, we encounter and test for NULL values, and we use the DISTINCT keyword to remove duplicate rows from our results.
+
 # Query Review
+The first query has us access the items table to show the title, artist, and price of each item. However, we want to only show the items that have prices between 14 and 17. This requires us to use a WHERE clause and the BETWEEN keyword to specify the price range. Then we want to sort the results by price and artist.
+
+The second query has us access the customers table to show the first name, last name, and the state. However, instead of showing the first name and last name in their own columns, we'll combine them into one column with the CONCAT function. Next, we want to show only customers from Ohio (OH) or California (CA), so we use a WHERE clause to check the customer_state value. Finally, we sort the results by state, last name, and first name.
+
+The third query has us access the orders table to show the order ID, customer ID, order date, and shipped date. However, the dates need to be reformatted. They are currently displayed as YYYY-MM-DD, and we need them to be displayed as MM/DD/YYYY. Therefore, we'll use the DATE_FORMAT function to accomplish this. In the parentheses of this function, the first parameter is the date we want to reformat, and the second parameter is a string value that indicates the format that we want. In this case, the string value will be "%m/%d/%y".
+
+The fourth query has us build upon the third query. We access the orders table, but we will also access some data from the customers table. Therefore, we will use the JOIN clause to include the customers table into our query via an inner join. Will will want to join based on the customer_id column, since that is the column that they have in common. We could use the ON keyword and a condition to check if they are equal. I chose to use the USING function because it does the same operation and the code looks more tidy. Now that the customers table is joined, we want to show the customer_last_name column in our results and use it to sort the results.
+
+The fifth query has us build upon the fourth query. Instead of just showing the customers last name, we will show their first and last name within one column, as we did in the second query. Next, we will include (inner join) the order_details table so that we can display the item_id and order_qty columns in our results. Again, we will use the USING function to join based on the column they have in common: order_id.
+
+The sixth query has us build upon the fifth query. Instead of showing the item_id column (which isn't very helpful to us), we will show the artist column, to show the artist that is associated with that item_id (Note: the instructions say artist column, but the example screenshot shows the title column). This will require another inner join with the items table, using the item_id column. In addition to the artist column, we'll also add the unit_price column, which tells us the price of one of the albums from that artist. There were a few things that confused me about this part of the assignment. The instructions say "Include the output from #5 as well as the additional output for this query." It sounds like it's asking us to do a UNION with the code from the fifth query. Attempting this raised a lot of questions:
+- How would this union provide useful data?
+- The sets don't have the same number of columns, so should I add a column of null values to one set?
+- The results are barely affected by the union; is that intentional?
+- Should I add a column to specify the source set of each row?
+- How am I going to fit this entire query into one screenshot?
+
+After looking at the example screenshot for this query, it seems like there is no union involved. So I decided to move on without the union. At this time, I also noticed that the years in my date values are different from the ones shown in the example screenshots, and I'm not sure why.
+
+The seventh query has us build upon the sixth query. We want to only show orders that have not shipped yet. We can do this with a WHERE clause that checks if the shipped_date value is NULL. Next, we want to create a new column that shows the total price of the order. We can do this by multiplying the unit price and quantity values.
+
+The eigth query has us access the order_details table to show the quantity of items sold in each order. But we also want to access the items table to display the title, artist, and unit price of the item in each order. So we will perform an inner join with the items table based on the item_id column that the two tables share. Similar to query 7, we will create a column to show the total price of the order, which can be found by multiplying the unit price and the quantity value. However, we will also multiply the value by 1.08 as an 8% tax, and we will use the ROUND function to round the result to two decimal places. Finally, we are asked to remove duplicate rows in our results, which requires us to simply add the DISTINCT keyword to our SELECT statement.
+
 # Conclusion
