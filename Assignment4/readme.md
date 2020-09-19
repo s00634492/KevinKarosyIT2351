@@ -1,7 +1,7 @@
-#Executive Summary
+# Executive Summary
 In this assignment, we experiement with subqueries and data type functions and conversions. We observe how subqueries and JOINs can overlap in their versatility, and we learn how to use an aggregate function like AVG in a subquery to affect the query overall. Then we use the FORMAT, CONVERT, and CAST functions to work with numerical values, and the LENGTH, LOCATE, and SUBSTRING_INDEX functions to work with string values.
 
-#Query Review
+# Query Review
 For task one, we’re given a query and asked to make an identical one that replaces the JOIN with a subquery. The given query uses joins the category table and the products table, and returns any rows where the category_id values match. Furthermore, it uses the DISTINCT keyword so duplicates are removed. I decided to use the IN operator for my subquery to see if our category is “in” the products table. This way, we will check each category in the categories table and only keep it if it exists in the products table somewhere. This gives the same results as the start query, and it doesn’t need the DISTINCT keyword.
 
 In the second task, we should look at the products table and return the name and price of products that are more expensive than average. We can find the average with the AVG function, and we can place it in the WHERE clause to see if prices are greater than it.
@@ -10,4 +10,5 @@ The third task has us show the list price of products in four columns, and for t
 
 In task four, we look at the email addresses from the customers table. We’re going to make a column that shows the number of characters in the email address with the LENGTH function, a column that shows the location of the @ symbol with the LOCATE function, a column that shows the username portion (before the symbol) with the SUBSTRING_INDEX function, and a column that shows the domain name portion (after the symbol). Again, I thought that this was pretty straightforward, but I had a problem where all of the locations of the @ symbol were zeroes. This was because I accidently mixed up the parameters; I had typed LOCATE(email_address, “@”) instead of LOCATE(“@”, email_address).
 
-#Conclusion
+# Conclusion
+I enjoyed this assignment because I like using functions and working with data types and conversions. Subqueries are powerful, but it seems like they could accidently make the query large and difficult to read if you use them too much. However, in some cases subqueries may be the best way to make the complicated parts of your queries more modular and easy to read.
